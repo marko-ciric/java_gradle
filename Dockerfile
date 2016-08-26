@@ -1,10 +1,11 @@
 FROM java:8-jdk
-MAINTAINER trucktrack 
+MAINTAINER trucktrack
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Gradle
 ENV GRADLE_VERSION 2.7
+
 ENV GRADLE_HASH fe801ce2166e6c5b48b3e7ba81277c41
 
 WORKDIR /usr/lib
@@ -23,7 +24,7 @@ RUN mkdir -p /usr/src/app
 # Set Appropriate Environmental Variables
 ENV GRADLE_HOME /usr/lib/gradle
 ENV PATH $PATH:$GRADLE_HOME/bin
-ENV JAVA_OPTS -Xmx1024m -XX:MaxPermSize=128M -Djava.security.egd=file:/dev/./urandom 
+ENV JAVA_OPTS -Xmx1024m -XX:MaxPermSize=128M -Djava.security.egd=file:/dev/./urandom
 
 # Caches
 VOLUME /root/.gradle/caches
@@ -32,5 +33,3 @@ VOLUME /root/.gradle/caches
 # (ie. Mount project at /usr/bin/app "docker --rm -v /path/to/app:/usr/bin/app gradle <command>")
 VOLUME /usr/bin/app
 WORKDIR /usr/bin/app
-
-
